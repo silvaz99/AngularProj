@@ -16,4 +16,10 @@ export class FoodServiceService {
   getFood() : Observable<any>{
     return this.http.get(this.apiEnpoint);
   } 
+
+  getFoodbyCategory(category) : Observable<any> {
+    return this.http.get(this.apiEnpoint + "?category=" + category);
+  }
+
+
 }

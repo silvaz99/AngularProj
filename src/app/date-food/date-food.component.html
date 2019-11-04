@@ -1,0 +1,22 @@
+<h1>
+    Food & Drinks & Drugs Report NOW WITH DATES!! :P
+</h1>
+
+<button (click) = "getDate()"> Get Foods Between</button>
+<select [(ngModel)] = "dateStringSend">
+    <option *ngFor = "let dat of dateString" [value] = "dat">
+      {{dat}}
+    </option>
+   </select>
+
+   <select [(ngModel)] = "dateStringSend2">
+      <option *ngFor = "let dat2 of dateString" [value] = "dat2">
+        {{dat2}}
+      </option>
+     </select>
+
+<div *ngIf = "arrayDate.length > 0">
+        <p *ngFor = "let cat of arrayDate">
+          {{cat}}
+        </p>
+</div>

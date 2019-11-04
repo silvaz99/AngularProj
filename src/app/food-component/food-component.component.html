@@ -1,3 +1,24 @@
-<p>
-  food-component works!
-</p>
+<h1> Food & Drinks & Drugs Report </h1>
+
+<button (click) = "getFood()"> Get reports by Categories</button>
+
+
+<select [(ngModel)] = "foodDataSendArray">
+  <option *ngFor = "let fod of foodDataArray" [value] = "fod">
+    {{fod}}
+  </option>
+ </select>
+
+ <select [(ngModel)] = "ratingSend">
+  <option *ngFor = "let nivel of rating" [value] = "nivel">
+    {{nivel}}
+  </option>
+ </select>
+
+
+
+<div *ngIf = "showByCat.length > 0">
+        <p *ngFor = "let cat of showByCat">
+          {{cat}}
+        </p>
+</div>

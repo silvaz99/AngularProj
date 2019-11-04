@@ -10,6 +10,14 @@ import { FoodServiceService } from '../food-service.service';
 export class FoodComponentComponent implements OnInit {
 
   foodData : any = "";
+  foodDataArray : any = ["Running On Empty", "Energy Crisis"];
+  foodDataSendArray : any = [];
+
+  showByCat : any = [];
+  i:  any = [];
+
+  rating : any = ["Ruim", "Medio", "Bom", "Not Rated"];
+  ratingSend : any = [];
   constructor(private food : FoodServiceService) { }
 
   ngOnInit() {
@@ -20,5 +28,44 @@ export class FoodComponentComponent implements OnInit {
       }
     )
   }
+
+  getFood() {
+    this.food.getFoodbyCategory(this.foodDataSendArray).subscribe(
+      res => {
+        for (this.i = 0; this.i < res.length ; this.i++){
+          switch(this.ratingSend){
+            case "Ruim":{
+              if (res[this.i]['rating'] < 4)
+                this.showByCat.push(res[this.i]['product']);
+              break;
+            }
+            case "Medio":{
+              if (res[this.i]['rating'] > 4 && res[this.i]['rating'] < 7)
+                this.showByCat.push(res[this.i]['product']);
+                break;
+            }
+            case "Bom":{
+              if (res[this.i]['rating'] > 7)
+                this.showByCat.push(res[this.i]['product']);
+                break;
+            }
+            case "Not Rated": {
+              if (res[this.i]['rating'] == null)
+                this.showByCat.push(res[this.i]['product']);
+              break;
+            }
+            
+          }
+          
+        }
+        console.log(this.showByCat);
+        console.log(this.ratingSend);
+      }
+    );
+  }
+
+
+
+
 
 }
